@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "persona-config-plugin",
+    "name": "PersonaConfigPlugin",
     "slug": "persona-config-plugin",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,16 +12,63 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.timmyjose.personaconfigplugin",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to access Camera for Government Id, Selfie, and Document flows",
+        "NSPhotoLibraryUsageDescription": "Used on Document flows and on Government Id flows when file upload is enabled",
+        "NFCReaderUsageDescription": "Used for Passport NFC flows",
+        "NSLocationWhenInUseUsageDescription": "Used for GPS collections",
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true,
+          "NSAllowsLocalNetworking": true,
+          "NSExceptionDomains": {
+            "localhost": {
+              "NSExceptionAllowsInsecureHTTPLoads": true
+            }
+          }
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.timmyjose.personaconfigplugin"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "minSdkVersion": 24,
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          },
+          "ios": {
+            "useFrameworks": "static",
+            "deploymentTarget": "14.0"
+          }
+        }
+      ],
+      [
+        "./plugins/withPersona.js",
+        {}
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c655ec7d-2e66-4801-a652-c402460685dc"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c655ec7d-2e66-4801-a652-c402460685dc"
     }
   }
 }
